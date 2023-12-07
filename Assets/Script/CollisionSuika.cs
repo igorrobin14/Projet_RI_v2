@@ -8,6 +8,7 @@ public class CollisionSuika : MonoBehaviour
     public GameObject BalleRouge;
     public GameObject BalleVert;
     private Transform spawnBalle;
+    private GameObject newPrefabInstance;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,27 @@ public class CollisionSuika : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("TropHaut");
         }
+        changementName();
+
+    }
+
+
+    public void changementName()
+    {
+        if (GameObject.Find("SuikaBall Rouge(2)(Clone)"))
+        {
+            GameObject changeRouge = GameObject.Find("SuikaBall Rouge(2)(Clone)");
+            changeRouge.name = "Rouge";
+        }
+        if (GameObject.Find("SuikaBall Vert(3)(Clone)"))
+        {
+            GameObject changeVert = GameObject.Find("SuikaBall Vert(3)(Clone)");
+            changeVert.name = "Vert";
+
+        }
+
+
+
 
     }
     private void OnCollisionEnter(Collision collision)
@@ -31,9 +53,12 @@ public class CollisionSuika : MonoBehaviour
             spawnBalle = collision.gameObject.GetComponent<Transform>();
             if (!GameObject.Find("SuikaBall Rouge(2)(Clone)")) //SuikaBall Rouge n'existe pas)
             {
-                GameObject newPrefabInstance = Instantiate(BalleRouge, spawnBalle.position, spawnBalle.rotation);
+                newPrefabInstance = Instantiate(BalleRouge, spawnBalle.position, spawnBalle.rotation);
+              
             }
+            
             Destroy(collision.gameObject);
+            
         }
 
         if (collision.gameObject.CompareTag("BalleRouge"))
@@ -41,10 +66,11 @@ public class CollisionSuika : MonoBehaviour
             spawnBalle = collision.gameObject.GetComponent<Transform>();
             if (!GameObject.Find("SuikaBall Vert(3)(Clone)")) //SuikaBall Vert n'existe pas
             {
-                GameObject newPrefabInstance = Instantiate(BalleVert, spawnBalle.position, spawnBalle.rotation);
+                newPrefabInstance = Instantiate(BalleVert, spawnBalle.position, spawnBalle.rotation);
             }
             Destroy(collision.gameObject);
         }
+
     }
 }
 
