@@ -13,10 +13,14 @@ public class Arme : MonoBehaviour
     private int _lvl;
     private float _tempsRecolte;
     public Minage Minage;
+    public bool _minage;
+    public bool _arme;
+
     // Start is called before the first frame update
     void Start()
     {
-        //_score = 0;
+        _minage = true;
+        _arme = false;
         _lvl = 1;
         raycastDirection = -transform.up;
         maxRaycastDistance = 10f;
@@ -29,6 +33,9 @@ public class Arme : MonoBehaviour
     {
         Ray();
         updateScore();
+        EtatMinage();
+        EtatArme();
+        //toggle();
          
     }
 
@@ -71,6 +78,42 @@ public class Arme : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    void EtatMinage()
+    {
+        if(_minage==true)
+        {
+            if (GetComponent<Renderer>().material.color != Color.black)
+            {
+                GetComponent<Renderer>().material.color = Color.black;
+            }
+        }
+
+
+    }
+
+    void EtatArme()
+    {
+        if (_arme == true)
+        {
+            if (GetComponent<Renderer>().material.color != Color.red)
+            {
+                GetComponent<Renderer>().material.color = Color.red;
+            }
+        }
+    }
+    
+    void toggle()
+    {
+        if(_arme==true)
+        {
+            _minage = false;
+        }
+        if(_minage==true)
+        {
+            _arme = false;
         }
     }
 }
