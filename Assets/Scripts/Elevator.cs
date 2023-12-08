@@ -21,62 +21,80 @@ public class Elevator : MonoBehaviour
         _elevatorDown = true;
         _timer = 0f;
         _delay = 2f;
-        _player = GameObject.Find("Character");
+        _player = GameObject.Find("XR Origin (XR Rig)");
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other != null)
         {
-            if (other.CompareTag("Elevator"))
+            if (other.CompareTag("Character"))
             {
                 Debug.Log("Player on elevator");
                 _playerOnElevator = true;
             }
         }
-        else
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other != null)
         {
-            _playerOnElevator = false;
+            if (other.CompareTag("Character"))
+            {
+                Debug.Log("Player not on elevator");
+                _playerOnElevator = false;
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        OnTriggerEnter(_myCollider);
+        OnTriggerStay(_myCollider);
 
         if (_playerOnElevator == true)
         {
             if (_elevatorDown == true)
             {
                 _timer += Time.deltaTime;
-                if (_timer > _delay && GetComponent<Transform>().position.y < 2.65f)
+                if (_timer > _delay)
                 {
-                    GetComponent<Transform>().Translate(Vector3.up * Time.deltaTime * _speed);
-                }
-                else
-                {
-                    _timer = 0f;
-                    _elevatorDown = false;
+                    _player.GetComponent<Transform>().SetParent(GetComponent<Transform>());
+                    if (GetComponent<Transform>().position.y < 2.65f)
+                    {
+                        GetComponent<Transform>().Translate(Vector3.up * Time.deltaTime * _speed);
+                    }
+                    else
+                    {
+                        _player.GetComponent<Transform>().SetParent(null);
+                        _elevatorDown = false;
+                        _timer = 0;
+                    }
                 }
             }
             else
             {
                 _timer += Time.deltaTime;
-                if (_timer > _delay && GetComponent<Transform>().position.y > -1.66f)
+                if (_timer > _delay)
                 {
-                    GetComponent<Transform>().Translate(Vector3.down * Time.deltaTime * _speed);
+                    _player.GetComponent<Transform>().SetParent(GetComponent<Transform>());
+                    if (GetComponent<Transform>().position.y > -1.3f)
+                    {
+                        GetComponent<Transform>().Translate(Vector3.down * Time.deltaTime * _speed);
+                    }
+                    else
+                    {
+                        _player.GetComponent<Transform>().SetParent(null);
+                        _elevatorDown = true;
+                        _timer = 0;
+                    }
                 }
-                else
-                {
-                    _timer = 0f;
-                    _elevatorDown = true;
-                }
-            } 
+            }
         }
         else
         {
-            _timer = 0f;
+            _player.GetComponent<Transform>().SetParent(null);
         }
     }
 }
