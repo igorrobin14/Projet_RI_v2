@@ -9,6 +9,7 @@ TagManager:
   - BalleBleu
   - BalleRouge
   - BalleVert
+  - Or
   layers:
   - Default
   - TransparentFX

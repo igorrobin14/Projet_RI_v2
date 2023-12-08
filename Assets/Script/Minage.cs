@@ -15,6 +15,10 @@ public class Minage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_score>150)
+        {
+            _score = 150;
+        }
         
     }
 }
