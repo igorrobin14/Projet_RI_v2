@@ -24,6 +24,7 @@ public class Porte : MonoBehaviour
 
         droite.Translate(_xDroite);
         gauche.Translate(_xGauche);
+        Debug.Log("Enter");
 
 
 
