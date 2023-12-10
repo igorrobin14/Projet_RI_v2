@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Arme : MonoBehaviour
 {
-    private RaycastHit hit;
-    private Vector3 raycastDirection;
     public float maxRaycastDistance;
     public float timer;
-    private float _tempsMin;
     public float _timerRecolte;
-    private int _lvl;
+
+    private RaycastHit hit;
+    private Vector3 raycastDirection;
+    private float _tempsMin;
+   
     private float _tempsRecolte;
+   
+    public Transform _parentAsterOr;
+    public GameObject _prefabAsterOr;
+    public GameObject _cible;
+
+    private GameObject test;
+
     public Minage Minage;
     public bool _minage;
     public bool _arme;
@@ -21,10 +29,11 @@ public class Arme : MonoBehaviour
     {
         _minage = true;
         _arme = false;
-        _lvl = 1;
+        
         raycastDirection = -transform.up;
         maxRaycastDistance = 10f;
         _tempsRecolte = 2f;
+       
         //Minage._score = 10;
     }
 
@@ -73,7 +82,7 @@ public class Arme : MonoBehaviour
                         if (_timerRecolte > _tempsRecolte)
                         {
                             _timerRecolte = 0;
-                            Minage._score += 1 * _lvl;
+                            Instantiate(_prefabAsterOr, hit.transform.position, Quaternion.identity,_parentAsterOr);
                         }
                     }
                 }

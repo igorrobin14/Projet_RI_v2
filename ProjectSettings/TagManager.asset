@@ -10,6 +10,7 @@ TagManager:
   - BalleRouge
   - BalleVert
   - Or
+  - AsterOR
   layers:
   - Default
   - TransparentFX
