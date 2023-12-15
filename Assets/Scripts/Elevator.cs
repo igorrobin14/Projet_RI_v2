@@ -55,12 +55,13 @@ public class Elevator : MonoBehaviour
 
         if (_playerOnElevator == true)
         {
+            _player.GetComponent<Transform>().SetParent(GetComponent<Transform>());
+            // _player.GetComponent<Transform>().localScale = new Vector3(1 / GetComponent<Transform>().localScale.x, 1 / GetComponent<Transform>().localScale.y, 1 / GetComponent<Transform>().localScale.z);
             if (_elevatorDown == true)
             {
                 _timer += Time.deltaTime;
                 if (_timer > _delay)
                 {
-                    _player.GetComponent<Transform>().SetParent(GetComponent<Transform>());
                     if (GetComponent<Transform>().position.y < 2.65f)
                     {
                         GetComponent<Transform>().Translate(Vector3.up * Time.deltaTime * _speed);
