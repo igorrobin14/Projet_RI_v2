@@ -8,6 +8,8 @@ public class SellButton : MonoBehaviour
     public Vente sellQuantityController; 
     public CapaMine scoreText; // Référence au texte affichant le score
     public Minage minage; // Variable de score
+    public Caractéristiques carac;
+    public int prix = 44;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,7 @@ public class SellButton : MonoBehaviour
     }
     void SellButtonClicked()
     {
-
+        carac._monnaie+= sellQuantityController.sellQuantity*prix;
         // Soustrayez la quantité vendue du score
         minage._score -= sellQuantityController.sellQuantity;
 

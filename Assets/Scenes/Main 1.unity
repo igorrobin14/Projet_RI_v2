@@ -3186,7 +3186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sellScrollbar: {fileID: 1273640886}
   sellQuantityText: {fileID: 692250302}
-  minage: {fileID: 0}
+  minage: {fileID: 1171779068}
   sellQuantity: 0
 --- !u!114 &592861569
 MonoBehaviour:
