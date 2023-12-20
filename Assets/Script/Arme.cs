@@ -21,14 +21,12 @@ public class Arme : MonoBehaviour
     private GameObject test;
 
     public Minage Minage;
-    public bool _minage;
-    public bool _arme;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        _minage = true;
-        _arme = false;
+        
         
         raycastDirection = -transform.up;
         maxRaycastDistance = 10f;
@@ -42,15 +40,14 @@ public class Arme : MonoBehaviour
     {
         Ray();
         updateScore();
-        EtatMinage();
-        EtatArme();
-        //toggle();
+      
+    
          
     }
 
     void Ray()
     {
-        // Définir la direction du raycast vers l'avant (en utilisant la direction du transform.forward)
+        // Dï¿½finir la direction du raycast vers l'avant (en utilisant la direction du transform.forward)
         Vector3 raycastDirection = -transform.up;
 
 
@@ -58,11 +55,11 @@ public class Arme : MonoBehaviour
         // Effectuer le raycast
         if (Physics.Raycast(transform.position, raycastDirection, out hit, maxRaycastDistance))
         {
-            // Si le raycast frappe quelque chose, imprimer le tag de l'objet touché dans la console
-            Debug.Log("Objet touché : " + hit.transform.tag);
+            // Si le raycast frappe quelque chose, imprimer le tag de l'objet touchï¿½ dans la console
+            Debug.Log("Objet touchï¿½ : " + hit.transform.tag);
         }
 
-        // Dessiner une ligne rouge représentant le raycast dans l'éditeur Unity
+        // Dessiner une ligne rouge reprï¿½sentant le raycast dans l'ï¿½diteur Unity
         Debug.DrawRay(transform.position, raycastDirection * maxRaycastDistance, Color.red);
     }
     void updateScore()
@@ -89,40 +86,5 @@ public class Arme : MonoBehaviour
             }
         }
     }
-
-    void EtatMinage()
-    {
-        if(_minage==true)
-        {
-            if (GetComponent<Renderer>().material.color != Color.black)
-            {
-                GetComponent<Renderer>().material.color = Color.black;
-            }
-        }
-
-
-    }
-
-    void EtatArme()
-    {
-        if (_arme == true)
-        {
-            if (GetComponent<Renderer>().material.color != Color.red)
-            {
-                GetComponent<Renderer>().material.color = Color.red;
-            }
-        }
-    }
     
-    void toggle()
-    {
-        if(_arme==true)
-        {
-            _minage = false;
-        }
-        if(_minage==true)
-        {
-            _arme = false;
-        }
-    }
 }
