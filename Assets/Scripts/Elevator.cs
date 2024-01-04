@@ -5,6 +5,9 @@ using UnityEngine;
 public class Elevator : MonoBehaviour
 {
     private Collider _myCollider;
+
+    private Collider _colliderPorteHaute, _colliderPorteBasse;
+
     public GameObject _player;
 
     public bool _playerOnElevator;
@@ -18,17 +21,19 @@ public class Elevator : MonoBehaviour
     {
         _myCollider = GetComponent<Collider>();
         _playerOnElevator = false;
-        _elevatorDown = true;
+        _elevatorDown = false;
         _timer = 0f;
-        _delay = 2f;
-        _player = GameObject.Find("XR Origin (XR Rig)");
+        _delay = 4f;
+        _player = GameObject.Find("Player");
+        _colliderPorteHaute = GameObject.Find("Porte Haute").GetComponent<BoxCollider>();
+        _colliderPorteBasse = GameObject.Find("Porte Basse").GetComponent<BoxCollider>();
     }
 
     void OnTriggerStay(Collider other)
     {
         if (other != null)
         {
-            if (other.CompareTag("Character"))
+            if (other.CompareTag("Player"))
             {
                 Debug.Log("Player on elevator");
                 _playerOnElevator = true;
@@ -40,7 +45,7 @@ public class Elevator : MonoBehaviour
     {
         if (other != null)
         {
-            if (other.CompareTag("Character"))
+            if (other.CompareTag("Player"))
             {
                 Debug.Log("Player not on elevator");
                 _playerOnElevator = false;
@@ -51,7 +56,7 @@ public class Elevator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        OnTriggerStay(_myCollider);
+        //OnTriggerStay(_myCollider);
 
         if (_playerOnElevator == true)
         {
@@ -62,15 +67,17 @@ public class Elevator : MonoBehaviour
                 _timer += Time.deltaTime;
                 if (_timer > _delay)
                 {
-                    if (GetComponent<Transform>().position.y < 2.65f)
+                    if (GetComponent<Transform>().position.y < 2.225f)
                     {
                         GetComponent<Transform>().Translate(Vector3.up * Time.deltaTime * _speed);
+                        _colliderPorteHaute.enabled = false;
                     }
                     else
                     {
                         _player.GetComponent<Transform>().SetParent(null);
                         _elevatorDown = false;
                         _timer = 0;
+                        _colliderPorteHaute.enabled = true;
                     }
                 }
             }
@@ -80,15 +87,17 @@ public class Elevator : MonoBehaviour
                 if (_timer > _delay)
                 {
                     _player.GetComponent<Transform>().SetParent(GetComponent<Transform>());
-                    if (GetComponent<Transform>().position.y > -1.3f)
+                    if (GetComponent<Transform>().position.y > -1.7f)
                     {
                         GetComponent<Transform>().Translate(Vector3.down * Time.deltaTime * _speed);
+                        _colliderPorteBasse.enabled = false;
                     }
                     else
                     {
                         _player.GetComponent<Transform>().SetParent(null);
                         _elevatorDown = true;
                         _timer = 0;
+                        _colliderPorteBasse.enabled = true;
                     }
                 }
             }
