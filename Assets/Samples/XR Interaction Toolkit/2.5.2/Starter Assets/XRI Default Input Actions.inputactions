@@ -781,15 +781,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "a button",
-                    "type": "Value",
-                    "id": "8eda6e4e-bd18-484e-9d40-49f0b2e0f07f",
-                    "expectedControlType": "Touch",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -955,17 +946,6 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1687c1c6-38a1-4800-864a-8043891fb6ff",
-                    "path": "<XRInputV1::Oculus::OculusTouchControllerOpenXR>{RightHand}/primarybutton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "a button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
