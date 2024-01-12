@@ -15,7 +15,7 @@ public class BalleInterVaisseau : MonoBehaviour
     {
 
     }
-    void OnTriggerEnter(Collision other)
+    /*void OnTriggerEnter(Collision other)
     {
         if(other!=null)
          {
@@ -25,5 +25,6 @@ public class BalleInterVaisseau : MonoBehaviour
             }
          }
     }
+    */
 
 }
