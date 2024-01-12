@@ -24,7 +24,7 @@ public class Elevator : MonoBehaviour
         _elevatorDown = false;
         _timer = 0f;
         _delay = 4f;
-        _player = GameObject.Find("Player");
+        _player = GameObject.Find("XR Origin (XR Rig)");
         _colliderPorteHaute = GameObject.Find("Porte Haute").GetComponent<BoxCollider>();
         _colliderPorteBasse = GameObject.Find("Porte Basse").GetComponent<BoxCollider>();
     }
