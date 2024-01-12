@@ -15,8 +15,8 @@ public class followLevier : MonoBehaviour
     private Rigidbody _rbShip;
     private float _grab;
 
-    private float rotationSpeed = 0.02f;
-    private float movementSpeed = 0.5f;
+    private float rotationSpeed = 0.05f;
+    private float movementSpeed = 1.0f;
 
 
 
@@ -27,7 +27,7 @@ public class followLevier : MonoBehaviour
         RotLevier = GameObject.FindWithTag("RotationLever");
         _tfRotLevier = RotLevier.GetComponent<Transform>();
         TranslationLevier = GameObject.FindWithTag("TranslationLever");
-        _tfTranslationLevier = RotLevier.GetComponent<Transform>(); ;
+        _tfTranslationLevier = TranslationLevier.GetComponent<Transform>(); ;
         _tfShip = GetComponent<Transform>();
         _rbShip = GetComponent<Rigidbody>();
 
@@ -39,11 +39,10 @@ public class followLevier : MonoBehaviour
     void Update()
     {
         //Debug.Log("Rotation : " + _tfRotLevier.eulerAngles.x +" ; "+  0 +" ; "+ _tfRotLevier.eulerAngles.z);
-        _tfShip.Rotate((_tfRotLevier.eulerAngles.x) *rotationSpeed* Time.deltaTime,  0, (_tfRotLevier.eulerAngles.z) * rotationSpeed * Time.deltaTime);
+        //_tfShip.Rotate((_tfRotLevier.eulerAngles.x) *rotationSpeed* Time.deltaTime,  0, (_tfRotLevier.eulerAngles.z) * rotationSpeed * Time.deltaTime);
         // -_tfShip.eulerAngles.z
 
-        //_tfShip.position = _tfShip.position + new Vector3(Mathf.Cos(_tfRotLevier.eulerAngles.x * Mathf.PI / 180) * movementSpeed * Time.deltaTime, 0, Mathf.Cos(_tfRotLevier.eulerAngles.z * Mathf.PI / 180) * movementSpeed * Time.deltaTime);
-        //Debug.Log("Translation : " + Mathf.Cos(_tfRotLevier.eulerAngles.x* Mathf.PI/180) * movementSpeed+ " ; "+ 0 + " ; " + Mathf.Cos(_tfRotLevier.eulerAngles.z * Mathf.PI / 180) *movementSpeed);
-
+        _tfShip.position = _tfShip.position + new Vector3(Mathf.Sin(_tfTranslationLevier.eulerAngles.x * Mathf.PI / 180) * movementSpeed * Time.deltaTime, 0, Mathf.Sin(_tfTranslationLevier.eulerAngles.z * Mathf.PI / 180) * movementSpeed * Time.deltaTime);
+        Debug.Log("Translation : " + Mathf.Sin(_tfTranslationLevier.eulerAngles.x * Mathf.PI / 180) + " ; " + Mathf.Sin(_tfTranslationLevier.eulerAngles.z * Mathf.PI / 180));
     }
 }
