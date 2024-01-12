@@ -4,13 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Right Hand
-  - Left Hand
-  - BalleBleu
-  - BalleRouge
-  - BalleVert
-  - Or
-  - AsterOR
+  - WeakToPlasma
+  - WeakToIon
   layers:
   - Default
   - TransparentFX
@@ -18,9 +13,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - interactable
-  - Post processing
+  - 
+  - 
+  - 
   - 
   - 
   - 
