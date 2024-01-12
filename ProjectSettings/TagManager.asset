@@ -4,13 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Right Hand
-  - Left Hand
-  - BalleBleu
-  - BalleRouge
-  - BalleVert
-  - Or
-  - AsterOR
+  - Enemy
+  - gold
+  - iron
+  - charcoal
   layers:
   - Default
   - TransparentFX
@@ -18,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - interactable
-  - Post processing
+  - 
+  - 
+  - 
   - 
   - 
   - 
